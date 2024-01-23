@@ -51,3 +51,10 @@ To run the test cases, use the following command:
 
 ```bash
 python manage.py test
+
+
+## Postman collection
+
+    ```bash
+    You can find postman collection JSON - Book_store.postman_collection.json
+    ```
