@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Dr. Joseph Murphy\",\n    \"birth_date\":\"1898-05-09\"\n}",
+					"raw": "{\n    \"name\":\"Dr. Joseph Murphy\",\n    \"birth_date\":\"1998-05-09\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -104,7 +104,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/book/4/",
+					"raw": "http://127.0.0.1:8000/api/book/6/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -116,7 +116,7 @@
 					"path": [
 						"api",
 						"book",
-						"4",
+						"6",
 						""
 					]
 				}
@@ -200,6 +200,43 @@
 		},
 		{
 			"name": "Get history",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/history/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"history",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ping",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},

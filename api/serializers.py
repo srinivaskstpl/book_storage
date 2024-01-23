@@ -57,10 +57,15 @@ class BookDetailsSerializer(serializers.ModelSerializer):
     """
 
     author = GetAuthorDetailsSerializer()
-
+    quantity = serializers.SerializerMethodField(required=False)
     class Meta:
         model = Book
-        fields = ["title", "publish_year", "author", "barcode"]
+        fields = ["title", "publish_year", "author", "barcode", "quantity"]
+    
+    def get_quantity(self, instance):
+        quantity = instance.books.filter(book_id=instance.id).last()
+        return quantity.quantity if quantity is not None else 0
+
 
 
 class CreateStorageSerializer(serializers.ModelSerializer):
@@ -71,6 +76,12 @@ class CreateStorageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Storing
         fields = "__all__"
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation.pop('id')
+        representation.pop('date')
+        return representation
 
 
 class GetHistorySerializer(serializers.ModelSerializer):
@@ -109,7 +120,7 @@ class GetHistorySerializer(serializers.ModelSerializer):
         Returns:
             list: List of dictionaries representing the storing history.
         """
-        information_history = obj.storing_set.all().order_by("-date")
+        information_history = obj.books.all().order_by("-date")
         history_list = [
             {"date": entry.date, "quantity": entry.quantity}
             for entry in information_history

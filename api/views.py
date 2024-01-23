@@ -9,7 +9,11 @@ from .serializers import (
 )
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import JsonResponse
 
+
+def ping_view(request):
+    return JsonResponse({'message': 'success'})
 
 class AuthorDetailView(generics.ListCreateAPIView):
     """

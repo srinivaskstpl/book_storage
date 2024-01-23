@@ -5,9 +5,11 @@ from .views import (
     BookRetrieveAPIView,
     StoringHistoryView,
     GetAuthorDetailView,
+    ping_view,
 )
 
 urlpatterns = [
+    path('ping/', ping_view, name='ping'),
     path("author/<int:pk>/", GetAuthorDetailView.as_view(), name="author-detail"),
     path("author/", AuthorDetailView.as_view()),
     path("book/<int:pk>/", BookRetrieveAPIView.as_view(), name="book-detail"),
