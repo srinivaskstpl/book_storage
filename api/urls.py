@@ -17,7 +17,7 @@ urlpatterns = [
     path("book/<int:pk>/", BookRetrieveAPIView.as_view(), name="book-detail"),
     path("book/", BookDetailView.as_view(), name="book-create-search"),
     path("history/<int:pk>/", StoringHistoryView.as_view(), name="storing-history"),
-    path("leftover/add", BooksLeftOverView.as_view(), name="add-leftover"),
-    path("leftover/remove", BooksLeftOverView.as_view(), name="remove-leftover"),
-    path("leftover/bulk", BulkCreateStorageView.as_view(), name="bulk-leftover"),
+    path("leftover/add/", BooksLeftOverView.as_view(), name="add-leftover"),
+    path("leftover/remove/", BooksLeftOverView.as_view(), name="remove-leftover"),
+    path("leftover/bulk/", BulkCreateStorageView.as_view(), name="bulk-leftover"),
 ]

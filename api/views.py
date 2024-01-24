@@ -5,9 +5,8 @@ from rest_framework import status
 from django.http import JsonResponse
 from rest_framework.views import APIView
 
-from .models import Author, Book, BooksLeftOver, Storing
+from .models import Author, Book, BooksLeftOver
 from .serializers import (
-    BulkCreateStorageSerializer,
     CreateBooksLeftOverSerializer,
     GetAuthorDetailsSerializer,
     BookDetailsSerializer,
@@ -17,6 +16,7 @@ from .serializers import (
 )
 
 from .signals import create_storing_entry
+from api.utils import handle_excel, handle_text
 
 
 def ping_view(request):
@@ -144,10 +144,28 @@ class BooksLeftOverView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class BulkCreateStorageView(generics.CreateAPIView):
-    """
-    View to create Storing history from uploaded file
-    """
+class BulkCreateStorageView(APIView):
+    def post(self, request):
+        if "file" in request.data.keys():
+            file = request.data["file"]
+            file_extension = file.name.split(".")[-1].lower()
 
-    queryset = Storing.objects.all()
-    serializer_class = BulkCreateStorageSerializer
+            if file_extension not in ["xlsx", "txt"]:
+                return Response(
+                    {
+                        "error": "Invalid file format. Only Excel (.xlsx) or text (.txt) files are allowed."
+                    }
+                )
+            file_extension = file.name.split(".")[-1].lower()
+
+            if file_extension == "xlsx":
+                result = handle_excel(file)
+            else:
+                result = handle_text(file)
+
+            if result != True:
+                return Response(result)
+
+            return Response({"success": "Data uploaded successfully"})
+        else:
+            return Response({"missing file": "please upload a text/excel file"})
