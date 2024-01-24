@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "82d4c652-60c0-4d80-b1a3-8aede2bf4c98",
-		"name": "Book_store",
+		"_postman_id": "3cbc1c12-363a-40ba-9be1-2096e4a1d0c2",
+		"name": "Book_Store",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24769055",
-		"_collection_link": "https://restless-zodiac-502988.postman.co/workspace/GoMeme~e81e015a-ec5f-46fe-96ac-21d3e669e281/collection/24769055-82d4c652-60c0-4d80-b1a3-8aede2bf4c98?action=share&source=collection_link&creator=24769055"
+		"_exporter_id": "27594132"
 	},
 	"item": [
 		{
@@ -138,7 +137,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/leftover/",
+					"raw": "http://127.0.0.1:8000/api/leftover",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -149,8 +148,7 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"leftover",
-						""
+						"leftover"
 					]
 				}
 			},
@@ -266,6 +264,134 @@
 						"api",
 						"history",
 						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add storage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"barcode\":\"ere\",\n    \"quantity\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/leftover/add/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"leftover",
+						"add",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk storage create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/ubox96/Book_Store/book_storage/book_store_file.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/leftover/bulk/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"leftover",
+						"bulk",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Storage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"barcode\":\"3f43\",\n    \"quantity\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/leftover/remove/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"leftover",
+						"remove",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Information History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/history/2/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"history",
+						"2",
 						""
 					]
 				}
